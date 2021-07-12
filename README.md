@@ -17,7 +17,10 @@ Polymorphyc data binding was implemented regarding MS documantation
  To create a specific type of customer you should choose a brand type what is an enum.
  0 - MrGreenCustomer.
  1 - RedBetCustomer.
- In the future better replace these integers into strings.
 
 # Limit of requests
 To change the limit of requests to one minute you should change the "Limit" field in the appsettings.json file
+
+# Future improvements
+1. Replace integers into strings in post parameter brand type in the body.
+2. Add business logic to operate with customer models.
