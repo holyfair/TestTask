@@ -16,7 +16,7 @@ namespace Tests.Controllers
     public class CustomersControllerTests
     {
         [Theory, AutoMoqData]
-        public async Task CreateCustomerSuccessful([Frozen] Mock<ICustomersRepository> repositoryMock, [Frozen] Mock<IMapper> mapperMock, CustomerBase model, CustomerModel record)
+        public async Task CreateCustomerSuccessful(Mock<ICustomersRepository> repositoryMock, Mock<IMapper> mapperMock, CustomerBase model, CustomerModel record)
         {
             // Arrange
             var brandType = BrandType.MrGreen;
