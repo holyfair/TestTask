@@ -11,7 +11,7 @@ Project starts from swagger page where you can test API.
 5. AspNetCoreRateLimit - to implement limit of requests
 
 # Polymorphyc data binding
-Polymorphyc data binding was implemented regarding MS documantation
+Polymorphyc data binding was implemented regarding
 [MS documantation] (https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/custom-model-binding?view=aspnetcore-5.0) -
  file in project (CustomerModelBinderProvider.cs).
  To create a specific type of customer you should choose a brand type what is an enum.
