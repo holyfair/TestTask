@@ -8,6 +8,6 @@ namespace Repository.Repository
     {
         Task<CustomerModel> CreateAsync(CustomerModel customer);
 
-        Task<IEnumerable<object>> GetAsync();
+        Task<IEnumerable<CustomerModel>> GetAsync();
     }
 }

@@ -23,7 +23,7 @@ namespace Repository.Repository
             return customer;
         }
 
-        public async Task<IEnumerable<object>> GetAsync()
+        public async Task<IEnumerable<CustomerModel>> GetAsync()
         {
             return await this.customers.Find(_ => true).ToListAsync();
         }
