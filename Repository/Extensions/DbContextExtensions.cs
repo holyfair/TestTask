@@ -6,7 +6,7 @@ namespace Repository.Extensions
 {
     public static class DbContextExtensions
     {
-        public static IQueryable<T> Set<T>(this DbContext context)
+        public static IQueryable<T> GetSet<T>(this DbContext context)
         {
             // Get the generic type definition 
             MethodInfo method = typeof(DbContext).GetMethod(nameof(DbContext.Set), BindingFlags.Public | BindingFlags.Instance);

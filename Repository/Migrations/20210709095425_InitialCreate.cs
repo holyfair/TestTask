@@ -8,7 +8,7 @@ namespace Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Brands",
+                name: "BaseCustomers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -20,70 +20,70 @@ namespace Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brands", x => x.Id);
+                    table.PrimaryKey("PK_BaseCustomers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MrGreenBrands",
+                name: "MrGreenCustomers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonalNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    BrandBaseInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    BaseCustomerInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MrGreenBrands", x => x.Id);
+                    table.PrimaryKey("PK_MrGreenCustomers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MrGreenBrands_Brands_BrandBaseInfoId",
-                        column: x => x.BrandBaseInfoId,
-                        principalTable: "Brands",
+                        name: "FK_MrGreenCustomers_BaseCustomers_BaseCustomerInfoId",
+                        column: x => x.BaseCustomerInfoId,
+                        principalTable: "BaseCustomers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RedBetBrands",
+                name: "RedBetCustomers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FavoriteFootballTeam = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    BrandBaseInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    BaseCustomerInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RedBetBrands", x => x.Id);
+                    table.PrimaryKey("PK_RedBetCustomers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RedBetBrands_Brands_BrandBaseInfoId",
-                        column: x => x.BrandBaseInfoId,
-                        principalTable: "Brands",
+                        name: "FK_RedBetCustomers_BaseCustomers_BaseCustomerInfoId",
+                        column: x => x.BaseCustomerInfoId,
+                        principalTable: "BaseCustomers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MrGreenBrands_BrandBaseInfoId",
-                table: "MrGreenBrands",
-                column: "BrandBaseInfoId",
+                name: "IX_MrGreenCustomers_BaseCustomerInfoId",
+                table: "MrGreenCustomers",
+                column: "BaseCustomerInfoId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_RedBetBrands_BrandBaseInfoId",
-                table: "RedBetBrands",
-                column: "BrandBaseInfoId",
+                name: "IX_RedBetCustomers_BaseCustomerInfoId",
+                table: "RedBetCustomers",
+                column: "BaseCustomerInfoId",
                 unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MrGreenBrands");
+                name: "MrGreenCustomers");
 
             migrationBuilder.DropTable(
-                name: "RedBetBrands");
+                name: "RedBetCustomers");
 
             migrationBuilder.DropTable(
-                name: "Brands");
+                name: "BaseCustomers");
         }
     }
 }

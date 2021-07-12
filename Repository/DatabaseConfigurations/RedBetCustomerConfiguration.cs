@@ -4,9 +4,9 @@ using Repository.DatabaseModels;
 
 namespace Repository.DatabaseConfigurations
 {
-    class RedBetConfiguration : IEntityTypeConfiguration<RedBetBrand>
+    class RedBetCustomerConfiguration : IEntityTypeConfiguration<RedBetCustomer>
     {
-        public void Configure(EntityTypeBuilder<RedBetBrand> builder)
+        public void Configure(EntityTypeBuilder<RedBetCustomer> builder)
         {
             builder.HasKey(p => p.Id);
 
@@ -14,7 +14,7 @@ namespace Repository.DatabaseConfigurations
                 .HasMaxLength(200)
                 .IsRequired();
 
-            builder.HasOne(p => p.BrandBaseInfo).WithOne().HasForeignKey<RedBetBrand>(x => x.BrandBaseInfoId)
+            builder.HasOne(p => p.BaseCustomerInfo).WithOne().HasForeignKey<RedBetCustomer>(x => x.BaseCustomerInfoId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

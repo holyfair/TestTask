@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Repository.DatabaseModels;
-using TestTask.Models;
-using TestTask.Models.Requests;
+using Repository.Models.Customer;
+using TestTask.Mapper.Converters;
+using TestTask.Models.Customer;
 
 namespace TestTask.Mapper
 {
@@ -9,16 +9,14 @@ namespace TestTask.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<CreateMrGreenBrandRequest, MrGreenBrand>()
-                .IncludeBase<CreateBrandBaseRequest, Brand>();
+            CreateMap<MrGreenCustomer, MrGreenCustomerModel>().ReverseMap();
 
-            CreateMap<CreateRedBetBrandRequest, MrGreenBrand>()
-                .IncludeBase<CreateBrandBaseRequest, Brand>();
+            CreateMap<RedBetCustomer, RedBetCustomerModel>().ReverseMap();
 
-            CreateMap<CreateBrandBaseRequest, Brand>()
-                .ForMember(x => x.Street, opt => opt.MapFrom(y => y.Address.Street))
-                .ForMember(x => x.House, opt => opt.MapFrom(y => y.Address.House))
-                .ForMember(x => x.ZipCode, opt => opt.MapFrom(y => y.Address.ZipCode));
+            CreateMap<Address, AddressModel>().ReverseMap();
+
+            CreateMap<CustomerBase, CustomerModel>()
+                .ConvertUsing(new CustomerTypeConverter());
         }
     }
 }

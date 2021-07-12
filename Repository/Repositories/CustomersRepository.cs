@@ -1,21 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Context;
-using Repository.DatabaseModels;
 using Repository.Interfaces;
 using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class BrandsRepository : IBrandsRepository
+    public class CustomersRepository : ICustomersRepository
     {
         private DbContext context;
 
-        public BrandsRepository(AppDbContext context)
+        public CustomersRepository(AppDbContext context)
         {
             this.context = context;
         }
 
-        public async Task<T> CreateBrandAsync<T>(T model) where T : Brand
+        public async Task<T> CreateCustomerAsync<T>(T model) where T : class
         {
             var set = this.context.Set<T>();
             var record = await set.AddAsync(model);

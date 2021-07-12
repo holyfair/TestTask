@@ -8,9 +8,9 @@ namespace Repository.Context
 {
     public class AppDbContext : DbContext
     {
-        internal virtual DbSet<Brand> Brands { get; set; }
-        internal virtual DbSet<MrGreenBrand> MrGreenBrands { get; set; }
-        internal virtual DbSet<RedBetBrand> RedBetBrands { get; set; }
+        internal virtual DbSet<BaseCustomer> BaseCustomers { get; set; }
+        internal virtual DbSet<MrGreenCustomer> MrGreenCustomers { get; set; }
+        internal virtual DbSet<RedBetCustomer> RedBetCustomers { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
@@ -18,9 +18,9 @@ namespace Repository.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new BrandConfiguration());
-            modelBuilder.ApplyConfiguration(new MrGreenBrandConfiguration());
-            modelBuilder.ApplyConfiguration(new RedBetConfiguration());
+            modelBuilder.ApplyConfiguration(new BaseCustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new MrGreenCustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new RedBetCustomerConfiguration());
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestTask.Models
+namespace TestTask.Models.Customer
 {
-    public class CreateAddressModel
+    public class AddressModel
     {
         [Required]
         public string Street { get; set; }
@@ -11,6 +11,7 @@ namespace TestTask.Models
         public int House { get; set; }
 
         [Required]
-        public int ZipCode { get; set; }
+        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Invalid Zip")]
+        public string ZipCode { get; set; }
     }
 }

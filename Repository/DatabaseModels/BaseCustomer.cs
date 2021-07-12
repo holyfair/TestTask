@@ -2,7 +2,7 @@
 
 namespace Repository.DatabaseModels
 {
-    public class Brand
+    public class BaseCustomer
     {
         public Guid Id { get; set; }
 

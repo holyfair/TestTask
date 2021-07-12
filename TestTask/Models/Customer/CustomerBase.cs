@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using TestTask.Enums;
 
-namespace TestTask.Models
+namespace TestTask.Models.Customer
 {
-    public abstract class CreateBrandBaseRequest
+    public class CustomerBase
     {
         [Required]
         public string FirstName { get; set; }
@@ -13,9 +13,9 @@ namespace TestTask.Models
         public string LastName { get; set; }
 
         [Required]
-        public CreateAddressModel Address { get; set; }
+        public AddressModel Address { get; set; }
 
-        [Required]
+        [JsonIgnore]
         public BrandType BrandType { get; set; }
     }
 }

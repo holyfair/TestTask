@@ -4,9 +4,9 @@ using Repository.DatabaseModels;
 
 namespace Repository.DatabaseConfigurations
 {
-    class MrGreenBrandConfiguration : IEntityTypeConfiguration<MrGreenBrand>
+    class MrGreenCustomerConfiguration : IEntityTypeConfiguration<MrGreenCustomer>
     {
-        public void Configure(EntityTypeBuilder<MrGreenBrand> builder)
+        public void Configure(EntityTypeBuilder<MrGreenCustomer> builder)
         {
             builder.HasKey(p => p.Id);
 
@@ -14,7 +14,7 @@ namespace Repository.DatabaseConfigurations
                 .IsRequired()
                 .HasMaxLength(20);
 
-            builder.HasOne(p => p.BrandBaseInfo).WithOne().HasForeignKey<MrGreenBrand>(x => x.BrandBaseInfoId)
+            builder.HasOne(p => p.BaseCustomerInfo).WithOne().HasForeignKey<MrGreenCustomer>(x => x.BaseCustomerInfoId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

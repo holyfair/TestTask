@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface IBrandsRepository
+    public interface ICustomersRepository
     {
-        Task<T> CreateBrandAsync<T>(T model) where T : Brand;
+        Task<T> CreateCustomerAsync<T>(T model) where T : class;
     }
 }

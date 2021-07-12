@@ -19,7 +19,7 @@ namespace Repository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Repository.DatabaseModels.Brand", b =>
+            modelBuilder.Entity("Repository.DatabaseModels.BaseCustomer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,16 +48,16 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("BaseCustomers");
                 });
 
-            modelBuilder.Entity("Repository.DatabaseModels.MrGreenBrand", b =>
+            modelBuilder.Entity("Repository.DatabaseModels.MrGreenCustomer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BrandBaseInfoId")
+                    b.Property<Guid>("BaseCustomerInfoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PersonalNumber")
@@ -67,19 +67,19 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandBaseInfoId")
+                    b.HasIndex("BaseCustomerInfoId")
                         .IsUnique();
 
-                    b.ToTable("MrGreenBrands");
+                    b.ToTable("MrGreenCustomers");
                 });
 
-            modelBuilder.Entity("Repository.DatabaseModels.RedBetBrand", b =>
+            modelBuilder.Entity("Repository.DatabaseModels.RedBetCustomer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BrandBaseInfoId")
+                    b.Property<Guid>("BaseCustomerInfoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FavoriteFootballTeam")
@@ -89,32 +89,32 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandBaseInfoId")
+                    b.HasIndex("BaseCustomerInfoId")
                         .IsUnique();
 
-                    b.ToTable("RedBetBrands");
+                    b.ToTable("RedBetCustomers");
                 });
 
-            modelBuilder.Entity("Repository.DatabaseModels.MrGreenBrand", b =>
+            modelBuilder.Entity("Repository.DatabaseModels.MrGreenCustomer", b =>
                 {
-                    b.HasOne("Repository.DatabaseModels.Brand", "BrandBaseInfo")
+                    b.HasOne("Repository.DatabaseModels.BaseCustomer", "BaseCustomerInfo")
                         .WithOne()
-                        .HasForeignKey("Repository.DatabaseModels.MrGreenBrand", "BrandBaseInfoId")
+                        .HasForeignKey("Repository.DatabaseModels.MrGreenCustomer", "BaseCustomerInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BrandBaseInfo");
+                    b.Navigation("BaseCustomerInfo");
                 });
 
-            modelBuilder.Entity("Repository.DatabaseModels.RedBetBrand", b =>
+            modelBuilder.Entity("Repository.DatabaseModels.RedBetCustomer", b =>
                 {
-                    b.HasOne("Repository.DatabaseModels.Brand", "BrandBaseInfo")
+                    b.HasOne("Repository.DatabaseModels.BaseCustomer", "BaseCustomerInfo")
                         .WithOne()
-                        .HasForeignKey("Repository.DatabaseModels.RedBetBrand", "BrandBaseInfoId")
+                        .HasForeignKey("Repository.DatabaseModels.RedBetCustomer", "BaseCustomerInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BrandBaseInfo");
+                    b.Navigation("BaseCustomerInfo");
                 });
 #pragma warning restore 612, 618
         }

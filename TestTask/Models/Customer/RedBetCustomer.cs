@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TestTask.Enums;
 
-namespace TestTask.Models
+namespace TestTask.Models.Customer
 {
-    public class CreateRedBetBrandRequest : CreateBrandBaseRequest
+    public class RedBetCustomer : CustomerBase
     {
-        public BrandType BrandType => BrandType.RedBet;
-
         [Required]
         public string FavoriteFootballTeam { get; set; }
     }

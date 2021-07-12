@@ -2,14 +2,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Repository.Context;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TestTask.JsonConverters;
 using AutoMapper;
 using TestTask.Mapper;
-using Repository.Interfaces;
-using Repository.Repositories;
+using Repository.Database;
+using Microsoft.Extensions.Options;
+using Repository.Repository;
+using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Logging;
+using System.Text.Json.Serialization;
+using AspNetCoreRateLimit;
+using Microsoft.AspNetCore.Http;
 
 namespace TestTask
 {
@@ -25,15 +31,27 @@ namespace TestTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddControllers();
-            services.AddControllers(options =>
+
+            services.AddOptions<MvcOptions>().Configure<IHttpRequestStreamReaderFactory, ILoggerFactory>((options, readerFactory, loggerFactory) =>
             {
-                options.ModelBinderProviders.Insert(0, new BrandModelBinderProvider());
+                options.ModelBinderProviders.Insert(0, new CustomerModelBinderProvider(options.InputFormatters, readerFactory, loggerFactory, options));
+                options.EnableEndpointRouting = false;
             });
-            services.AddDbContext<AppDbContext>(optionBuilder =>
-            {
-                optionBuilder.UseSqlServer(Configuration["ConnectionStrings:Database"]);
-            });
+
+            services.AddSwaggerGen();
+            services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
+
+            services.AddMemoryCache();
+
+            services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
+
+            services.AddInMemoryRateLimiting();
+
+            // configuration (resolvers, counter key builders)
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+
+            services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            services.AddTransient<ICustomersRepository, CustomersRepository>();
 
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
@@ -44,7 +62,6 @@ namespace TestTask
             IMapper mapper = mappingConfig.CreateMapper();
 
             services.AddSingleton(mapper);
-            services.AddSingleton<IBrandsRepository, BrandsRepository>();
         }
 
 
@@ -55,12 +72,25 @@ namespace TestTask
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = String.Empty;
+            });
+
             app.UseRouting();
+            app.UseIpRateLimiting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            app.UseMvc();
         }
     }
 }

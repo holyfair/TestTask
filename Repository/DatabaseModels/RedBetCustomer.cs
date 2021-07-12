@@ -2,14 +2,14 @@
 
 namespace Repository.DatabaseModels
 {
-    public class RedBetBrand
+    public class RedBetCustomer
     {
         public Guid Id { get; set; }
 
         public string FavoriteFootballTeam { get; set; }
 
-        public Brand BrandBaseInfo { get; set; }
+        public BaseCustomer BaseCustomerInfo { get; set; }
 
-        public Guid BrandBaseInfoId { get; set; }
+        public Guid BaseCustomerInfoId { get; set; }
     }
 }

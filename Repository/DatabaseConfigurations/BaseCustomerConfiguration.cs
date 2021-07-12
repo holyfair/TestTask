@@ -4,9 +4,9 @@ using Repository.DatabaseModels;
 
 namespace Repository.DatabaseConfigurations
 {
-    class BrandConfiguration : IEntityTypeConfiguration<Brand>
+    class BaseCustomerConfiguration : IEntityTypeConfiguration<BaseCustomer>
     {
-        public void Configure(EntityTypeBuilder<Brand> builder)
+        public void Configure(EntityTypeBuilder<BaseCustomer> builder)
         {
             builder.HasKey(p => p.Id);
 
