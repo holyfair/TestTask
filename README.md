@@ -4,7 +4,7 @@ Need to build project and start it from Visual Studio IDE.
 Project starts from swagger page where you can test API.
 
 # Project structure
-1. Database - was choosen unralational database (Mongo) to store polymorphyc data in one collection
+1. Database - was chosen unralational database (Mongo) to store polymorphyc data in one collection
 2. Swagger - to test API
 3. Test library - xUnit
 4. Automapper - to map polymorpyc types
