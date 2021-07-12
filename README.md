@@ -13,7 +13,11 @@ Project starts from swagger page where you can test API.
 # Polymorphyc data binding
 Polymorphyc data binding was implemented regarding MS documantation
 [MS documantation] (https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/custom-model-binding?view=aspnetcore-5.0) -
- file in project (CustomerModelBinderProvider.cs)
+ file in project (CustomerModelBinderProvider.cs).
+ To create a specific type of customer you should choose a brand type what is an enum.
+ 0 - MrGreenCustomer.
+ 1 - RedBetCustomer.
+ In the future better replace these integers into strings.
 
 # Limit of requests
 To change the limit of requests to one minute you should change the "Limit" field in the appsettings.json file
