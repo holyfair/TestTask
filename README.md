@@ -1,9 +1,9 @@
-# H1 TestTask
-# H2 Start project
+# TestTask
+# Start project
 Need to build project and start it from Visual Studio IDE
 Project starts from swagger page where you can test API
 
-# H2 Project structure
+# Project structure
 1. Database - was choosen unralational database (Mongo) to store polymorphyc data in one collection
 2. Swagger - to test API
 3. Test library - xUnit
