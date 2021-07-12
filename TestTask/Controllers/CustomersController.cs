@@ -5,10 +5,7 @@ using Repository.Models.Customer;
 using TestTask.Models.Customer;
 using Microsoft.AspNetCore.Mvc;
 using TestTask.Enums;
-using Microsoft.AspNetCore.Http;
 using System.Text.Json;
-using AspNetCoreRateLimit;
-using Microsoft.Extensions.Options;
 
 namespace TestTask.Controllers
 {
@@ -18,15 +15,11 @@ namespace TestTask.Controllers
     {
         private IMapper mapper;
         private ICustomersRepository customersRepository;
-        private readonly IpRateLimitOptions _options;
-        private readonly IIpPolicyStore _ipPolicyStore;
 
-        public CustomersController(IMapper mapper, ICustomersRepository customersRepository, IOptions<IpRateLimitOptions> optionsAccessor, IIpPolicyStore ipPolicyStore)
+        public CustomersController(IMapper mapper, ICustomersRepository customersRepository)
         {
             this.mapper = mapper;
             this.customersRepository = customersRepository;
-            _options = optionsAccessor.Value;
-            _ipPolicyStore = ipPolicyStore;
         }
 
         [HttpPost]
@@ -40,20 +33,13 @@ namespace TestTask.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<string>> GetAll()
         {
             var records = await this.customersRepository.GetAsync();
             var json = JsonSerializer.Serialize(records);
 
             return Ok(json);
         }
-
-        //[Route(""), HttpGet]
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        //public RedirectResult RedirectToSwaggerUi()
-        //{
-        //    return Redirect("/swagger/");
-        //}
     }
 
 }

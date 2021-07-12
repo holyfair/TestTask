@@ -13,9 +13,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Logging;
-using System.Text.Json.Serialization;
 using AspNetCoreRateLimit;
-using Microsoft.AspNetCore.Http;
 
 namespace TestTask
 {
@@ -47,9 +45,7 @@ namespace TestTask
 
             services.AddInMemoryRateLimiting();
 
-            // configuration (resolvers, counter key builders)
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
-
             services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOptions<DatabaseSettings>>().Value);
             services.AddTransient<ICustomersRepository, CustomersRepository>();
 
