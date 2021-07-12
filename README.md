@@ -11,6 +11,7 @@ Project starts from swagger page where you can test API
 5. Polymorphyc data binding was implemented regarding MS documantation
 [MS documantation] (https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/custom-model-binding?view=aspnetcore-5.0) -
  file in project (CustomerModelBinderProvider.cs)
+6. AspNetCoreRateLimit - для реалізації обмеження запитів
 
 # Limit of requests
 To change the limit of requests to one minute you should change the "Limit" field in the appsettings.json file
