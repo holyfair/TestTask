@@ -1,7 +1,7 @@
 # TestTask
 # Start project
-Need to build project and start it from Visual Studio IDE
-Project starts from swagger page where you can test API
+Need to build project and start it from Visual Studio IDE.
+Project starts from swagger page where you can test API.
 
 # Project structure
 1. Database - was choosen unralational database (Mongo) to store polymorphyc data in one collection
