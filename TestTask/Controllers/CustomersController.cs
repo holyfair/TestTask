@@ -5,7 +5,8 @@ using Repository.Models.Customer;
 using TestTask.Models.Customer;
 using Microsoft.AspNetCore.Mvc;
 using TestTask.Enums;
-using System.Text.Json;
+using Newtonsoft.Json;
+using TestTask.Converters;
 
 namespace TestTask.Controllers
 {
@@ -36,10 +37,9 @@ namespace TestTask.Controllers
         public async Task<ActionResult<string>> GetAll()
         {
             var records = await this.customersRepository.GetAsync();
-            var json = JsonSerializer.Serialize(records);
+            var json = JsonConvert.SerializeObject(records, new PolymorphicJsonConverter());
 
             return Ok(json);
         }
     }
-
 }
